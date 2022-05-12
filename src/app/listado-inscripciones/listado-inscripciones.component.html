@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <table class="table">
+        <thead>
+          <h2>RECORDAD ENVIAR CORREO DE INSCRIPCION</h2>
+          <br>
+          <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">Fecha Inicio</th>
+            <th scope="col">Fecha Término</th>
+            <th scope="col">Imagen</th>
+            <th scope="col">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of inscripciones">
+            <th scope="row">{{item.clienteObtenido.nombre}} {{item.clienteObtenido.apellido}} {{item.id}}</th>
+            <td>{{item.fecha | date : 'dd/MM/yyyy'}}</td>
+            <td>{{item.fechaFinal | date : 'dd/MM/yyyy'}}</td>
+            <td>
+                <img  height="50px" alt="" [src]="item.clienteObtenido.imgURL">
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="eliminarInscripcion(item.id)">Eliminar</button>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+</div>

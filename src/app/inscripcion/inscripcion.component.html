@@ -1,0 +1,63 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-sm-6">
+            <app-seleccionar-cliente 
+                [nombre]="clienteSeleccionado.nombre" 
+                (seleccionoCliente)="asginarCliente($event)"
+                (canceloCliente)="eliminarCliente()"
+                >
+            </app-seleccionar-cliente>
+
+            <div class="form-group">
+                <label for="">Precio</label>
+                <select [(ngModel)]="idPrecio" [disabled]="!clienteSeleccionado.nombre" (change)="selecionarPrecio($event)" class="form-control" name="" id="">
+                    <option [value]="null" >Selecciones un precio</option>
+                    <option *ngFor="let item of precios" [value]="item.id">{{item.nombre}}</option>
+                </select>
+            </div>
+
+            <div class="row mt-3">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">Fecha Inicio</label>
+                        <input class="form-control" [value]="inscripcion.fecha | date: 'dd/MM/yyyy'" type="text" disabled>
+                    </div>  
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="">Fecha Término</label>
+                        <input class="form-control" [value]="inscripcion.fechaFinal | date: 'dd/MM/yyyy'"type="text" disabled>
+                    </div>  
+                </div>  
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">Sub Total</label>
+                        <input class="form-control" [value]="inscripcion.subTotal | currency:'CLP':'$'" type="text" disabled>
+                    </div>  
+                </div>     
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">IVA</label>
+                        <input class="form-control" [value]="inscripcion.iva | currency:'CLP':'$'" type="text" disabled>
+                    </div>  
+                </div>   
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label for="">Total</label>
+                        <input class="form-control" [value]="inscripcion.total | currency:'CLP':'$'" type="text" disabled>
+                    </div>  
+                </div>     
+            </div>
+
+           
+
+            <button class="btn btn-primary mt-3" (click)="guardar()">Guardar</button>
+
+        </div>
+        <div class="col-sm-6 mt-4">
+            <div *ngIf="clienteSeleccionado.imgURL" class="imgCliente">
+                <img [src]="clienteSeleccionado.imgURL" alt="">
+            </div>
+        </div>
+    </div>
+</div>

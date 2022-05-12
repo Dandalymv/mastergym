@@ -1,0 +1,31 @@
+<div class="container mt-4" >
+<h4 class="text-center mb-4">Listado de clientes</h4>
+
+    <form >
+        <div class="form-group">
+        <input  class="form-control mb-3" type="text"  placeholder="Buscar cliente...">
+        </div>
+    </form>
+
+    <div >
+      <div class="row" >
+        <div class="col-sm-3" *ngFor="let item of clientes">
+          <div class="card">
+            <img [src]="item.imgURL" class="card-img-top" alt="">
+            <div class="class-body">
+              <p>ID: {{item.id}}</p>
+              <h5 class="card-title">{{item.nombre}} {{item.apellido}}</h5>
+              <a [routerLink]="['/agregar-cliente', item.id]" class="card-link">Editar</a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+
+
+
+

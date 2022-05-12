@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="text-center">
+        <img src="assets/logoGym.png" alt="" width="500">
+        <h3>Bienvenido, por favor ingrese sus datos</h3>
+    </div>
+</div>
+<div class="container" >
+    <form [formGroup]="formularioLogin" >
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo electrónico</label>
+          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="correo@correo.com" formControlName="email" >   
+          <div class="alert alert-danger" role="alert"
+          *ngIf="formularioLogin.controls['email'].invalid && formularioLogin.controls['email'].dirty">
+            <span *ngIf="formularioLogin.controls['email'].errors?.['required']" >Correo requerido!</span>
+            <span *ngIf="formularioLogin.controls['email'].errors?.['email']" >Formato de correo inválido</span>
+          </div>  
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" formControlName="password" (keyUp.enter)="ingresar()">
+          <div class="alert alert-danger" role="alert"
+          *ngIf="formularioLogin.controls['password'].invalid && formularioLogin.controls['password'].dirty">
+            <span *ngIf="formularioLogin.controls['password'].errors?.['required']" >Ingrese contraseña!</span>
+            
+          </div> 
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="!formularioLogin.valid" (click)="ingresar()">Ingresar</button>
+
+      </form>
+      
+     
+        
+        <button (click)="ingresarGmail()" class="btn btn-danger mt-3" >Ingresar con Google</button>
+      
+
+      <div *ngIf="!datosCorrectos" class="alert alert-warning" role="alert">
+        {{textoErrorLogin}}
+      </div>
+      <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "default" color = "#fff" type = "ball-scale-multiple" [fullScreen] = "true"><p style="color: white" > Cargando... </p></ngx-spinner>
+</div>
